@@ -38,6 +38,8 @@ class audioGraph {
         if (dataArray[i] > -100000000) {
           freq = map( dataArray[i], min(dataArray), max(dataArray), minFreq, maxFreq );
           wave.setFrequency( freq );
+          println("Channel: " + channel + " + Frequency: " + int(freq) + " + Velocity: " + velocity);
+          myBus.sendNoteOn(channel, int(freq), velocity);
         }
       }
       float xPos = (iteration+1)*vSegments-map(dataArray[i], min(dataArray), max(dataArray), 2*margin, vSegments-2*margin);
@@ -53,7 +55,6 @@ class audioGraph {
     }
   }
 }
-
 
 
 

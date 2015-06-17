@@ -8,10 +8,10 @@
 // Based on http://code.compartmental.net/minim/ugen_class_ugen.html
 
 // TO DO
-// - Output MIDI
 
 // DONE
 // - Make Object Oriented
+// - Output MIDI
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - 
@@ -19,6 +19,8 @@
 // - - - - - - - - - - - - - - - - - - - - - - - 
 import ddf.minim.*;
 import ddf.minim.ugens.*;
+import themidibus.*;
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - 
 // VARIABLES
@@ -27,8 +29,11 @@ import ddf.minim.ugens.*;
 Minim minim;
 AudioOutput out;
 Oscil wave;
+MidiBus myBus;
 int minFreq = 220;
 int maxFreq = 660;
+int channel = 1;
+int velocity = 100;
 
 // Data
 String sourceFile = "Southeastern.tsv";
@@ -50,7 +55,9 @@ ArrayList<audioGraph> audioGraphs = new ArrayList<audioGraph>();
 // - - - - - - - - - - - - - - - - - - - - - - - 
 void setup() {
   size(1200, 800);
-  smooth();
+  myBus = new MidiBus(this, "Real Time Sequencer", "Real Time Sequencer");
+  MidiBus.list();
+  println();
   intializeAudio();
   initializeGraphs();
   hSegments = float(width)/(dataArray.length-1);
@@ -65,9 +72,7 @@ void draw() {
     iteration = i;
     audioGraphs.get(i).display();
   }
-
 }
-
 
 
 
