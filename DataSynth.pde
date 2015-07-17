@@ -35,6 +35,7 @@ int maxFreq = 660;
 int channel = 1;
 int velocity = 100;
 
+
 // Data
 String sourceFile = "Southeastern.tsv";
 //String sourceFile = "Barth.tsv";
@@ -61,6 +62,8 @@ void setup() {
   intializeAudio();
   initializeGraphs();
   hSegments = float(width)/(dataArray.length-1);
+//  myBus = new MidiBus(this, "Processing MIDI", "Processing MIDI");
+  myBus = new MidiBus(this, "Bus 1", "Bus 1");
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - 

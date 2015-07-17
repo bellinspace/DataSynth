@@ -40,6 +40,7 @@ class audioGraph {
           wave.setFrequency( freq );
           println("Channel: " + channel + " + Frequency: " + int(freq) + " + Velocity: " + velocity);
           myBus.sendNoteOn(channel, int(freq), velocity);
+          myBus.sendControllerChange(0, channel, int(freq));
         }
       }
       float xPos = (iteration+1)*vSegments-map(dataArray[i], min(dataArray), max(dataArray), 2*margin, vSegments-2*margin);
